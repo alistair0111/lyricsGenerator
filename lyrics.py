@@ -56,8 +56,8 @@ def scrapeLyricsText(name):
         page = requests.get(link)
         soup = BeautifulSoup(page.content, "html.parser")
 
-        lyrics_div = soup.find("div", class_="lyrics")
-        print(type(lyrics_div))
+        lyrics_div = soup.find(class_="lyrics")
+        # print(type(lyrics_div))
         if (lyrics_div != None):
             anchor_tags = lyrics_div.find_all('a')
             current_lyrics = []
