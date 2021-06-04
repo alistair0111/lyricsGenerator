@@ -1,4 +1,5 @@
 from random import randint
+from lyrics import scrapeLyricsText
 
 
 class MarkovLyrics:
@@ -10,6 +11,7 @@ class MarkovLyrics:
         }
 
     def populateMarkovChains(self, lyrics):
+        print(lyrics)
         for line in lyrics:
             words = line.split(" ")
 
@@ -44,9 +46,3 @@ class MarkovLyrics:
                 lyrics += next_word + ' '
                 current_word = next_word
         return lyrics
-
-
-data = ["I am alistair", "I am an engineer", "I like to code"]
-m = MarkovLyrics()
-m.populateMarkovChains(data)
-# print(m.generateLyrics(20))

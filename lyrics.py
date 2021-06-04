@@ -33,7 +33,7 @@ def getTopTenSongs(name):
     headers = {"authorization": token}
     params = {
         "sort": "popularity",
-        "per_page": 20
+        "per_page": 10
     }
     r = requests.get(api_url, headers=headers, params=params)
     return r.json()
@@ -50,7 +50,6 @@ def getLyricsArray(name):
 
 def scrapeLyricsText(name):
     links = getLyricsArray(name)
-    print(links)
     song_lyrics = []
     for link in links:
         page = requests.get(link)
@@ -63,13 +62,11 @@ def scrapeLyricsText(name):
             current_lyrics = []
             for anchor in anchor_tags:
                 if len(anchor.text) > 0 and anchor.text[0] != "[":
-                    text = anchor.text.replace("\n", " ")
+                    text = anchor.text.replace("\n", " NEWLINE ")
                     current_lyrics.append(text)
             song_lyrics.append(current_lyrics)
-            print(len(song_lyrics))
+
         else:
             continue
+    print(len(song_lyrics))
     return song_lyrics
-
-
-print(scrapeLyricsText("drake"))
